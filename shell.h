@@ -1,0 +1,18 @@
+#ifndef SHELL
+#define SHELL
+
+#include <sys/types.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
+#include <wait.h>
+#include <fcntl.h>
+#include <dirent.h>
+#include <signal.h>
+#include <string.h>
+extern char **environ;
+int shell(void);
+
+#endif
