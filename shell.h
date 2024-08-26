@@ -14,5 +14,7 @@
 #include <string.h>
 extern char **environ;
 int shell(void);
+void arguments(char *command, char **argv);
+char *handle_path_var(char *command);
 
 #endif
