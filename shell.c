@@ -80,6 +80,9 @@ int shell(void)
 			free(full_path);
 			exit(status);
 		}
+		if (strcmp(argv[0], "env") == 0)
+			_print_env();
+
 		full_path = handle_path_var(argv[0]);
 		if (full_path == NULL)
 		{

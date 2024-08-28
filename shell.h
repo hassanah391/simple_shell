@@ -16,5 +16,6 @@ extern char **environ;
 int shell(void);
 void arguments(char *command, char **argv);
 char *handle_path_var(char *command);
+void _print_env();
 
 #endif
