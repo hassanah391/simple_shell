@@ -58,12 +58,9 @@ char *_getline(char *inputline, size_t len)
  */
 int shell(void)
 {
-	char *inputline, *argv[10], *full_path;
+	char *inputline = NULL, *argv[10], *full_path;
 	size_t len = 0;
-	pid_t forkvalue; /* return value of fork() */
-	int status;
 
-	inputline = NULL; /* intialaize inputline to NULL to pass it to _getline() */
 	do {
 		printf("#cisfun$ "); /* Prompt for the shell */
 		inputline = _getline(inputline, len);
@@ -77,8 +74,7 @@ int shell(void)
 		if (strcmp(argv[0], "exit") == 0) /* if user input "exit" trminate shell */
 		{
 			free(inputline);
-			free(full_path);
-			exit(status);
+			exit(EXIT_SUCCESS);
 		}
 		if (strcmp(argv[0], "env") == 0)
 			_print_env();
@@ -89,20 +85,8 @@ int shell(void)
 			printf("Error: command does not exist");
 			continue;
 		}
-		forkvalue = fork(); /* duplicate current proccess */
-		if (forkvalue == 0) /* child proccess */
-		{
-			if (execve(full_path, argv, environ) == -1) /* replace current proccess */
-			{ /* if execve() failed */
-				perror("Error: Cannot execute the command\n");
-				free(inputline);
-				return (-1);
-			}
-		}
-		else /* Parent proccess */
-		{
-			wait(&status); /* make parent proccess to wait child to terminate */
-		}
+		ecxute_command(full_path, argv);
+
 		free(inputline);
 		inputline = NULL;
 	} while (1);

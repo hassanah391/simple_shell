@@ -17,5 +17,6 @@ int shell(void);
 void arguments(char *command, char **argv);
 char *handle_path_var(char *command);
 void _print_env();
+int ecxute_command(char *command, char *argv[] );
 
 #endif
