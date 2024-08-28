@@ -60,6 +60,7 @@ int shell(void)
 {
 	char *inputline = NULL, *argv[10], *full_path;
 	size_t len = 0;
+	int xcommandvalue;
 
 	do {
 		printf("#cisfun$ "); /* Prompt for the shell */
@@ -85,8 +86,12 @@ int shell(void)
 			printf("Error: command does not exist");
 			continue;
 		}
-		ecxute_command(full_path, argv);
-
+		xcommandvalue = excute_command(full_path, argv);
+		if (xcommandvalue == -1)
+		{
+			printf("Error: command can not excute");
+			continue;
+		}
 		free(inputline);
 		inputline = NULL;
 	} while (1);

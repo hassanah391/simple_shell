@@ -1,7 +1,12 @@
 #include "shell.h"
-void _print_env()
+/**
+* _print_env - prints value of env
+*
+*/
+void _print_env(void)
 {
 	int i;
+
 	i = 0;
 
 	while (environ[i] != NULL)
