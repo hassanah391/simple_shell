@@ -9,9 +9,9 @@
  */
 int main(int argc, char **argv)
 {
-	(void) argc, (void) argv;
 
-	shell();
+	(void) argc;
+	shell(argv[0]);
 	exit(EXIT_SUCCESS);
 
 }

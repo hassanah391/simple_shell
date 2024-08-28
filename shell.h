@@ -13,10 +13,10 @@
 #include <signal.h>
 #include <string.h>
 extern char **environ;
-int shell(void);
+int shell(char *programname);
 void arguments(char *command, char **argv);
 char *handle_path_var(char *command);
-void _print_env(void);
+void _env(void);
 int excute_command(char *command, char *argv[]);
 
 #endif

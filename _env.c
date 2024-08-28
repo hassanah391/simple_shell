@@ -1,9 +1,9 @@
 #include "shell.h"
 /**
-* _print_env - prints value of env
+* _env - prints value of env
 *
 */
-void _print_env(void)
+void _env(void)
 {
 	int i;
 

@@ -1,17 +1,19 @@
 #include "shell.h"
 
 /**
- * arguments - handle inputline (arguments) and store it in argv
- * @inputline: An input that a user enter
- * @argv: for storing arguments (command+options)
- *
- * arguments: takes the inputline string and take out
- *            arguments (command+options) from it
- */
+* arguments - handle inputline (arguments) and store it in argv
+* @inputline: An input that a user enter
+* @argv: for storing arguments (command+options)
+*
+* arguments: takes the inputline string and take out
+*            arguments (command+options) from it
+*/
 void arguments(char *inputline, char **argv)
 {
 	int i = 0;
+
 	char *token;
+
 	/* take arguments from inputline string and store it in argv */
 	token = strtok(inputline, " ");
 	i = 0;
@@ -23,12 +25,12 @@ void arguments(char *inputline, char **argv)
 	argv[i] = NULL;
 }
 /**
- * _getline - read a input line from user without \n character
- * @inputline: a pointer to the inputline string
- * @len: length of the inputline string
- *
- * Return: input line (command) on success and NULL on failure
- */
+* _getline - read a input line from user without \n character
+* @inputline: a pointer to the inputline string
+* @len: length of the inputline string
+*
+* Return: input line (command) on success and NULL on failure
+*/
 char *_getline(char *inputline, size_t len)
 {
 	ssize_t nread; /* return value of getline() */
@@ -52,15 +54,16 @@ char *_getline(char *inputline, size_t len)
 	return (inputline);
 }
 /**
- * shell - repeatedly takes a input line (command) from a user and executes it
- *
- * Return: 0 on success and -1 on failure
- */
-int shell(void)
+* shell - repeatedly takes a input line (command) from a user and executes it
+* @programname: the name of the excutable file
+*
+* Return: 0 on success and -1 on failure
+*/
+int shell(char *programname)
 {
 	char *inputline = NULL, *argv[10], *full_path;
+
 	size_t len = 0;
-	int xcommandvalue;
 
 	do {
 		printf("#cisfun$ "); /* Prompt for the shell */
@@ -78,20 +81,17 @@ int shell(void)
 			exit(EXIT_SUCCESS);
 		}
 		if (strcmp(argv[0], "env") == 0)
-			_print_env();
-
+		{
+			_env();
+			continue;
+		}
 		full_path = handle_path_var(argv[0]);
 		if (full_path == NULL)
 		{
-			printf("Error: command does not exist");
+			printf("%s: 1: %s: not found\n", programname, argv[0]);
 			continue;
 		}
-		xcommandvalue = excute_command(full_path, argv);
-		if (xcommandvalue == -1)
-		{
-			printf("Error: command can not excute");
-			continue;
-		}
+		excute_command(full_path, argv);
 		free(inputline);
 		inputline = NULL;
 	} while (1);
