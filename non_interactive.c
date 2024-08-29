@@ -18,6 +18,9 @@ int non_interactive(char *programname)
 
 		number_command++;
 
+	if (isatty(STDIN_FILENO))
+			return (0);
+
 		inputline = _getline(inputline, len);
 
 		arguments(inputline, argv); /* handle arguments and store it in argv */
