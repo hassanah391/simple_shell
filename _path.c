@@ -18,7 +18,7 @@ char *handle_path_var(char *command)
 	path_env = getenv("PATH");
 	if (path_env == NULL)
 		return (NULL);
-	if (c != '/')
+	if (c != '/' && c != '.')
 	{
 		/* in case if user just pass the command (EX: "ls" or "cat") */
 		path_env_dup = strdup(path_env);
