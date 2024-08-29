@@ -18,5 +18,7 @@ void arguments(char *command, char **argv);
 char *handle_path_var(char *command);
 void _env(void);
 int excute_command(char *command, char *argv[]);
+int non_interactive(char *programname);
+char *_getline(char *inputline, size_t len);
 
 #endif

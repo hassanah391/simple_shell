@@ -71,7 +71,9 @@ int shell(char *programname)
 	do {
 		number_command++;
 		if (isatty(STDIN_FILENO))
-		printf("#cisfun$ "); /* Prompt for the shell */
+			write(STDOUT_FILENO, "cisfun$ ", 8);
+			else
+			non_interactive(programname);
 		inputline = _getline(inputline, len);
 		if (strcmp(inputline, "\0") == 0) /* Re-prompt if user presses Enter */
 		{
