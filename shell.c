@@ -62,10 +62,15 @@ char *_getline(char *inputline, size_t len)
 int shell(char *programname)
 {
 	char *inputline = NULL, *argv[10], *full_path;
+	int number_command;
 
 	size_t len = 0;
 
+	number_command = 0;
+
 	do {
+		number_command++;
+		if (isatty(STDIN_FILENO))
 		printf("#cisfun$ "); /* Prompt for the shell */
 		inputline = _getline(inputline, len);
 		if (strcmp(inputline, "\0") == 0) /* Re-prompt if user presses Enter */
@@ -88,7 +93,7 @@ int shell(char *programname)
 		full_path = handle_path_var(argv[0]);
 		if (full_path == NULL)
 		{
-			printf("%s: 1: %s: not found\n", programname, argv[0]);
+			printf("%s: %d: %s: not found\n", programname, number_command, argv[0]);
 			continue;
 		}
 		excute_command(full_path, argv);
