@@ -64,7 +64,7 @@ int shell(char *programname)
 	char *inputline = NULL, *argv[10], *full_path;
 
 	int number_command;
-kjfkj
+
 	size_t len = 0;
 	number_command = 0;
 
