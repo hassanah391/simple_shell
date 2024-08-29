@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
-* non_interactive - handle inputs from interactive mode
+* non_interactive - handle inputs from non-interactive mode
 *   (pipe lines or script file) (EX: echo "/bin/ls" | ./hsh)
 * @programname: the name of the excution file
 *

@@ -93,12 +93,14 @@ int shell(char *programname)
 		if (strcmp(argv[0], "env") == 0)
 		{
 			_env();
+			free(inputline);
 			continue;
 		}
 		full_path = handle_path_var(argv[0]);
 		if (full_path == NULL)
 		{
 			printf("%s: %d: %s: not found\n", programname, number_command, argv[0]);
+			free(inputline);
 			continue;
 		}
 		excute_command(full_path, argv);
