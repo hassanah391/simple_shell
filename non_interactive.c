@@ -9,34 +9,41 @@
 int non_interactive(char *programname)
 {
 	char *inputline = NULL, *argv[10], *full_path;
-
 	int number_command;
-
 	size_t len = 0;
 
 	number_command = 0;
 
-		number_command++;
+	number_command++;
 
-		inputline = _getline(inputline, len);
+	inputline = _getline(inputline, len);
+	if (inputline == NULL) {
+		return 0;  /* Return if there's no input */
+	}
 
-		arguments(inputline, argv); /* handle arguments and store it in argv */
-		if (strcmp(argv[0], "exit") == 0) /* if user input "exit" trminate shell */
-		{
-			free(inputline);
-			exit(EXIT_SUCCESS);
-		}
-		if (strcmp(argv[0], "env") == 0)
-		{
-			_env();
-		}
+	arguments(inputline, argv); /* handle arguments and store it in argv */
+	if (strcmp(argv[0], "exit") == 0) /* if user input "exit" terminate shell */
+	{
+		free(inputline);
+		exit(EXIT_SUCCESS);
+	}
+	if (strcmp(argv[0], "env") == 0)
+	{
+		_env();
+	}
+	else
+	{
 		full_path = handle_path_var(argv[0]);
 		if (full_path == NULL)
 		{
-			printf("%s: %d: %s: not found\n", programname, number_command, argv[0]);
+			fprintf(stderr, "%s: %d: %s: not found\n", programname, number_command, argv[0]);
 		}
-		excute_command(full_path, argv);
-		free(inputline);
-		inputline = NULL;
-	return (0);
+		else
+		{
+			excute_command(full_path, argv);
+			free(full_path);
+		}
+	}
+	free(inputline);
+	return 0;
 }

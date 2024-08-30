@@ -12,6 +12,7 @@ void _env(void)
 	while (environ[i] != NULL)
 	{
 		printf("%s", environ[i++]);
+		if (environ[i] != NULL)
+			printf("\n");
 	}
-	printf("\n");
 }

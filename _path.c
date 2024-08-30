@@ -2,7 +2,7 @@
 
 /**
  * handle_path_var - handle $PATH environment
- * @command: command (no options, no speactial char like | )taken from user
+ * @command: command (no options, no special char like | )taken from user
  *
  * handle_path_var: checks the directories listed in the PATH variable
  *                  to find an executable file store in *command arg
