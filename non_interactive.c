@@ -11,20 +11,20 @@ int non_interactive(char *programname)
 	char *inputline = NULL, *argv[10], *full_path;
 	int number_command;
 	size_t len = 0;
+	ssize_t read;
 
 	number_command = 0;
 
-	while ((inputline = _getline(inputline, len)) != NULL)
+	while ((read = getline(&inputline, &len, stdin)) != -1)
 	{
+		if (read > 0 && inputline[read - 1] == '\n')
+			inputline[read - 1] = '\0';  /* Remove trailing newline */
+
 		number_command++;
 
 		arguments(inputline, argv); /* handle arguments and store it in argv */
 		if (argv[0] == NULL) /* Skip empty lines */
-		{
-			free(inputline);
-			inputline = NULL;
 			continue;
-		}
 
 		if (strcmp(argv[0], "exit") == 0) /* if user input "exit" terminate shell */
 		{
@@ -49,10 +49,8 @@ int non_interactive(char *programname)
 				free(full_path);
 			}
 		}
-
-		free(inputline);
-		inputline = NULL;
 	}
 
+	free(inputline);
 	return (0);
 }
