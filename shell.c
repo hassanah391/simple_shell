@@ -62,21 +62,16 @@ char *_getline(char *inputline, size_t len)
 int shell(char *programname)
 {
 	char *inputline = NULL, *argv[10], *full_path;
-
 	int number_command;
-
 	size_t len = 0;
-	number_command = 0;
 
-		 if (!isatty(STDIN_FILENO))
-		{
-		/* Non-interactive mode */
-		return (non_interactive(programname));
-		}
+	number_command = 0;
 	do {
 		number_command++;
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "cisfun$ ", 8);
+			else
+				return (non_interactive(programname));
 		inputline = _getline(inputline, len);
 		if (strcmp(inputline, "\0") == 0) /* Re-prompt if user presses Enter */
 		{
