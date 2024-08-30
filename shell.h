@@ -12,6 +12,7 @@
 #include <dirent.h>
 #include <signal.h>
 #include <string.h>
+#include <ctype.h>
 extern char **environ;
 int shell(char *programname);
 void arguments(char *command, char **argv);
@@ -20,5 +21,6 @@ void _env(void);
 int excute_command(char *command, char *argv[]);
 int non_interactive(char *programname);
 char *_getline(char *inputline, size_t len);
+int is_whitespace(const char *str);
 
 #endif
