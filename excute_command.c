@@ -23,6 +23,7 @@ int excute_command(char *command, char *argv[])
 	}
 	else /* Parent proccess */
 	{
+		printf("HAHAHAHHAHAHAHA******\n");
 		wait(&status); /* make parent proccess to wait child to terminate */
 	}
 	return (0);
