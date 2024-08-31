@@ -98,7 +98,7 @@ int shell(char *programname)
 			free(inputline);
 			continue;
 		}
-		excute_command(full_path, argv);
+		excute_command(full_path, argv, programname, number_command);
 		free(inputline);
 		inputline = NULL;
 	} while (1);

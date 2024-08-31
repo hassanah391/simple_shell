@@ -12,12 +12,14 @@
 #include <dirent.h>
 #include <signal.h>
 #include <string.h>
+#include <errno.h>
 extern char **environ;
 int shell(char *programname);
 void arguments(char *command, char **argv);
 char *handle_path_var(char *command);
 void _env(void);
-int excute_command(char *command, char *argv[]);
+int excute_command(char *command, char **argv,
+		char *programname, int number_command);
 int non_interactive(char *programname);
 char *_getline(char *inputline, size_t len);
 
