@@ -1,21 +1,4 @@
 #include "shell.h"
-
-/**
- * is_whitespace - Check if a string contains only whitespace
- * @str: The string to check
- *
- * Return: 1 if string is only whitespace, 0 otherwise
- */
-int is_whitespace(const char *str)
-{
-    while (*str)
-    {
-        if (!isspace((unsigned char)*str))
-            return 0;
-        str++;
-    }
-    return 1;
-}
 /**
 * non_interactive - handle inputs from non-interactive mode
 *   (pipe lines or script file) (EX: echo "/bin/ls" | ./hsh)
@@ -36,8 +19,6 @@ int non_interactive(char *programname)
 	{
 		if (read > 0 && inputline[read - 1] == '\n')
 			inputline[read - 1] = '\0';  /* Remove trailing newline */
-		if (is_whitespace(inputline))  /* Skip lines that are only whitespace */
-            continue;	
 
 		number_command++;
 
