@@ -1,18 +1,20 @@
 #include "shell.h"
 
 /**
- * handle_path_var - handle $PATH environment
- * @command: command (no options, no special char like | )taken from user
- *
- * handle_path_var: checks the directories listed in the PATH variable
- *                  to find an executable file store in *command arg
- *
- * Return: return full path of the *command if found, otherwise return NULL
- */
+* handle_path_var - handle $PATH environment
+* @command: command (no options, no special char like | )taken from user
+*
+* handle_path_var: checks the directories listed in the PATH variable
+*                  to find an executable file store in *command arg
+*
+* Return: return full path of the *command if found, otherwise return NULL
+*/
 char *handle_path_var(char *command)
 {
 	char *path_env, *path, *path_env_dup;
+
 	char full_path[1024];
+
 	int c = command[0];
 
 	path_env = getenv("PATH");

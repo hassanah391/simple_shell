@@ -62,10 +62,9 @@ char *_getline(char *inputline, size_t len)
 int shell(char *programname)
 {
 	char *inputline = NULL, *argv[10], *full_path;
-	int number_command;
+	int number_command = 0;
 	size_t len = 0;
 
-	number_command = 0;
 	do {
 		number_command++;
 		if (isatty(STDIN_FILENO))
